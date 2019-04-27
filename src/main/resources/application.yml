@@ -1,0 +1,20 @@
+spring:
+  # 数据库连接
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  thymeleaf:
+    cache: false
+# mybatis 配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mappers/*.xml
+# 日志
+logging:
+  level:
+    com.cj.springboottemplates.dao: debug
+  # springBoot运行日志
+#debug: true

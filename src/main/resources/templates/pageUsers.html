@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragment::header">
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+
+</head>
+<body>
+<div class="form-inline">
+
+    <input class="form-control" id="userName" placeholder="请输入用户名" type="text">
+    <button class="bg-danger btn" onclick="location.href='/getAll?userName='+$('#userName').val()">搜索</button>
+    <button class="btn-success btn" onclick="toAddUser()">新增</button>
+</div>
+<table class="table table-bordered table-hover">
+    <tr>
+        <td>编号</td>
+        <td>用户名</td>
+        <td>密码</td>
+        <td>编辑</td>
+    </tr>
+    <tr th:each="user:${users}">
+        <td th:text="${user.userId}"></td>
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.userPassword}"></td>
+        <td>
+            <button class="btn btn-info" th:onclick="'edit(\''+${user.userId}+'\')'">修改</button>
+            <button class="btn btn-primary" th:onclick="'del(\''+${user.userId}+'\')'">删除</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

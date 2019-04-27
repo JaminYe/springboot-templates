@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.springboottemplates.dao.UserDao">
+    <!--查询所有用户-->
+    <select id="getAllUser" resultType="com.cj.springboottemplates.entity.User">
+        select * from s_user
+        <where>
+            <if test="userName != null and userName!=''">
+                user_name like CONCAT('%',CONCAT(#{userName},'%'))
+            </if>
+        </where>
+    </select>
+
+    <!--用户回显-->
+    <select id="userUpload" resultType="com.cj.springboottemplates.entity.User">
+        select * from s_user where user_id=#{userId}
+    </select>
+
+    <!--用户信息修改-->
+    <update id="userUpdate">
+ update s_user set user_name=#{userName},user_password=#{userPassword} where user_id=#{userId}
+ </update>
+
+
+    <!--用户删除-->
+    <delete id="delUser">
+        delete from s_user where user_id=#{userId}
+    </delete>
+
+
+    <!--添加用户-->
+    <insert id="userAdd">
+        insert into s_user(user_name,user_password) values(#{userName},#{userPassword})
+    </insert>
+</mapper>
